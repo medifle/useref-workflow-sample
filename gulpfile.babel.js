@@ -30,7 +30,7 @@ gulp.task('html', ['clean'], () => {
       // noconcat: true
     },
 
-    // after assets referenced from HTML searched,
+    // after assets in HTML build blocks searched,
     // transform them before concat
     lazypipe()
 
@@ -40,6 +40,9 @@ gulp.task('html', ['clean'], () => {
         precision: 10
       }).on('error', $.sass.logError));
     })
+
+    //# @THE ISSUE
+    //# it seems gulp-autoprefixer changed the value of "sources" entry in main.css.map generated later
     .pipe(function() {
       return $.if(/\.css$/, $.autoprefixer());
     })
@@ -56,6 +59,7 @@ gulp.task('html', ['clean'], () => {
 
 
 // Clean output directory
+// just for test convenience
 gulp.task('clean', cb => del(['dist/*', '!dist/.git'], {
   dot: true
 }));

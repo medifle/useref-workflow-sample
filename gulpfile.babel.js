@@ -30,7 +30,7 @@ gulp.task('html', ['clean'], () => {
       // noconcat: true
     },
 
-    // after assets in HTML build blocks searched,
+    // after assets in HTML is searched out,
     // transform them before concat
     lazypipe()
 
@@ -42,7 +42,8 @@ gulp.task('html', ['clean'], () => {
     })
 
     //# @THE ISSUE
-    //# it seems gulp-autoprefixer changed the value of "sources" entry in main.css.map generated later
+    //# it seems gulp-autoprefixer changed the value of "sources" entry in main.css.map,
+    //# which in turn cannot be identified by Chrome.
     .pipe(function() {
       return $.if(/\.css$/, $.autoprefixer());
     })

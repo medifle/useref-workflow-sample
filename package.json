@@ -16,5 +16,6 @@
   },
   "engines": {
     "node": ">=0.12"
-  }
+  },
+  "dependencies": {}
 }
